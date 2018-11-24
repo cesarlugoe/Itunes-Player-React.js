@@ -26,7 +26,7 @@ export default class SearchBar extends Component {
     return (
       <form className=" form container " onSubmit={this.handleSubmit}>
         <input className=" search-bar " placeholder="enter artist, song or album..." type="text" value={query}  onChange={this.onChange} />
-        <input className=" button " type="submit" value="search"/>
+        <input className=" search-btn " type="submit" value="search"/>
       </form>
     )
   }

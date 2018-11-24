@@ -17,19 +17,21 @@ export default class HomePage extends Component {
 
     itunesServer.findTunes(query)
     .then((tunesResponse) => {
-      this.setState({
-        tunesQueryData: tunesResponse,
-        isLoading: false,
-      })
+      if (tunesResponse.data.results.length > 0) {
+        this.setState({
+          tunesQueryData: tunesResponse,
+          isLoading: false,
+        })
+      }
     })
     .catch(error => {
       console.log(error);
     })
+    
   }
 
   render() {
     const { tunesQueryData } = this.state;
-
     return (
       <div className=" main-page container ">
         <SearchBar handleSearch={this.handleTunesSearch} />

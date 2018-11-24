@@ -53,8 +53,20 @@ body {
 .search-bar {
   width: 40%;
   height: 40px;
+  display: inline-block;
+  font-size: 20px;
 }
 
+.search-btn {
+  height: 40px;
+  display: inline-block;
+  padding: 10px 15px;
+  font-size: 20px;
+  border-radius: 0;
+  -webkit-appearance: none;
+  background-color:#1898c2;
+  color: #fff;
+}
 
 
 /* ---------------- List -----------------------*/

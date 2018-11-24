@@ -41,6 +41,7 @@ export default class MusicPlayer extends Component {
                 controls
                 src={song.previewUrl}>
               </audio>
+              
             </div>
         }   
       </div>
