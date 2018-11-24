@@ -1,0 +1,5 @@
+ <div className=" player-controls container ">
+                <Button name='previous'/>
+                <Button name={main}/>
+                <Button name='next'/>
+              </div>
