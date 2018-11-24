@@ -129,3 +129,7 @@ body {
    width: 60%;
    justify-content: space-between;
  }
+
+ .share-btn {
+  cursor: pointer;
+ }
