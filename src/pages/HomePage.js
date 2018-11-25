@@ -7,36 +7,64 @@ import List from '../components/List';
 export default class HomePage extends Component {
 
   state = {
-    tunesQueryData: {},
-    isLoading: true,
+    tunesQueryData: [],
+    isSearching: false,
+    searchSuccess: Boolean,
+  }
+
+  componentDidMount = () => {
+    this.setState({
+      isLoading: false,
+    })
   }
 
   handleTunesSearch = (query) => {
     this.setState({
-      isLoading: true,
+      isSearching: true,
     })
+
     itunesServer.findTunes(query)
     .then((tunesResponse) => {
-      if (tunesResponse.data.results.length > 0) {
+      const tunesQueryData  = tunesResponse.data.results;
+      if (tunesQueryData.length > 0) {
         this.setState({
-          tunesQueryData: tunesResponse,
-          isLoading: false,
+          tunesQueryData,
+          isSearching: false,
+          searchSuccess: true,
+        })
+      }
+      else {
+        this.setState({
+          isSearching: false,
+          searchSuccess: false,
         })
       }
     })
     .catch(error => {
       console.log(error);
     })
-    
+  }
+
+  displaySearchResult = () => {
+    const { searchSuccess, tunesQueryData } = this.state;
+    if (searchSuccess === true) {
+      return <List tunesQueryData={tunesQueryData} /> 
+    }
+    if (searchSuccess === false) {
+      return <h4> No results came up from your search </h4>
+    }
   }
 
   render() {
-    const { tunesQueryData } = this.state;
+    const { isSearching } = this.state;
+
     return (
-      <div className=" main-page container ">
-        <SearchBar handleSearch={this.handleTunesSearch} />
-        { Object.keys(tunesQueryData).length !== 0 ? <List tunesQueryData={tunesQueryData} /> : null }
-      </div>
+        <div className=" main-page container ">
+          <SearchBar handleSearch={this.handleTunesSearch} />
+          {isSearching? <img src="/5.gif" alt="gif"></img> 
+            :  this.displaySearchResult()
+          }
+        </div> 
     )
   }
 }

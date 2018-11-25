@@ -15,25 +15,32 @@ export default class List extends Component {
   }
 
   sortByProperty = (property) => {
-    const { results } = this.props.tunesQueryData.data;
-
+    const results  = this.props.tunesQueryData;
+    
     if (property === 'length') {
       results.sort((a,b) => a.trackTimeMillis- b.trackTimeMillis)
     }
-    else if (property === 'genre') {
-      results.sort((a,b) => a.primaryGenreName- b.primaryGenreName)
-    }
-    else {
-      results.sort((a,b) => a.trackPrice- b.trackPrice)
+    
+    if (property === 'genre') {
+      results.sort((a,b) => {
+        const firstTrack = a.primaryGenreName.toUpperCase();
+        const secondTrack = b.primaryGenreName.toUpperCase();
+
+        return firstTrack < secondTrack?  -1 : 1;
+      })
     }
 
+    if (property === 'price') {
+      results.sort((a,b) => a.trackPrice- b.trackPrice)
+    }
+    
     this.setState({
       results,
     })
   }
 
   render() {
-    const { results } = this.props.tunesQueryData.data;
+    const results = this.props.tunesQueryData;
 
     return (
       <div className=" container result-list ">

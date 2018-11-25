@@ -34,10 +34,10 @@ export default class MusicPlayer extends Component {
   }
 
   handleChangeSong = (value) => {
-    let changer;
-    value === 'next'? changer = 1 : changer = -1 ;
-    if (this.state.currentSongIndex > 0 || changer === 1) {
-      const currentSongIndex = this.state.currentSongIndex + changer;
+    let direction;
+    value === 'next'? direction = 1 : direction = -1 ;
+    if (this.state.currentSongIndex > 0 || direction === 1) {
+      const currentSongIndex = this.state.currentSongIndex + direction;
       this.setState({
         currentSongIndex,
       }, () => this.findTune())
