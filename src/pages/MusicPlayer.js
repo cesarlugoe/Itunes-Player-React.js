@@ -3,12 +3,19 @@ import React, { Component } from 'react'
 import itunesServer from '../lib/ItunesService';
 import SocialSharing from '../components/SocialSharing';
 
+/* I understand there should be only one Redux store at the root of the app to handle the complete state, I haven't
+used Redux before and it seem more digestible to use it in this file only, but I'm certain I can handle it in time */ 
+
+import musicPlayer from '../reducers/index';
+import { createStore } from 'redux';
+
+const store = createStore(musicPlayer);
+
 export default class MusicPlayer extends Component {
 
   state = {
     song: {},
     isLoading: true,
-    currentSongIndex: Number,
   }
 
   componentDidMount = () => {
@@ -16,11 +23,12 @@ export default class MusicPlayer extends Component {
       isLoading: true,
       currentSongIndex: this.props.location.state.index,
     }, () => this.findTune());
-
   }
 
+
   findTune = () => {
-    const { currentSongIndex } = this.state;
+    const storeState = store.getState();
+    const currentSongIndex = storeState.songChanger;
     const songId = this.props.location.state.songList[currentSongIndex].trackId;
 
     itunesServer.findTuneById(songId)
@@ -34,15 +42,15 @@ export default class MusicPlayer extends Component {
   }
 
   handleChangeSong = (value) => {
-    let direction;
-    value === 'next'? direction = 1 : direction = -1 ;
-    if (this.state.currentSongIndex > 0 || direction === 1) {
-      const currentSongIndex = this.state.currentSongIndex + direction;
-      this.setState({
-        currentSongIndex,
-      }, () => this.findTune())
-    } 
+    const storeState = store.getState();
+    
+    if (storeState.songChanger > 0 || value === 'NEXT'){
+      store.dispatch({
+        type: value,
+      }) 
+    this.findTune();
   }
+}  
 
   render() {
     const { song, isLoading } = this.state;
@@ -58,8 +66,8 @@ export default class MusicPlayer extends Component {
                 src={song.previewUrl}>
               </audio>
               <div className=" change-controlers ">
-                <button onClick={(e) => this.handleChangeSong('previous', e)}>previous</button>
-                <button onClick={(e) => this.handleChangeSong('next', e)}>next</button>
+                <button onClick={(e) => this.handleChangeSong('PREVIOUS', e)}>previous</button>
+                <button onClick={(e) => this.handleChangeSong('NEXT', e)}>next</button>
               </div>
               <SocialSharing content={song}/>
             </div>
