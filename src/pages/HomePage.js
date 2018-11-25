@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import SearchBar from '../components/SearchBar';
 import itunesServer from '../lib/ItunesService';
@@ -14,7 +15,6 @@ export default class HomePage extends Component {
     this.setState({
       isLoading: true,
     })
-
     itunesServer.findTunes(query)
     .then((tunesResponse) => {
       if (tunesResponse.data.results.length > 0) {

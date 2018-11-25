@@ -7,23 +7,15 @@ export default class List extends Component {
     results: [],
   }
 
-  componentDidMount = () => {
-    const { results } = this.props.tunesQueryData.data;
-
-    this.setState({
-      results,
-    })
-  }
-
   displaySongResults = (results) => {
 
-    return results.map(song => {
-       return <Card key={song.trackId} tunes={song} />
+    return results.map((song, index) => {
+       return <Card key={song.trackId} tunes={song} songList={results} index={index}/>
     })
   }
 
   sortByProperty = (property) => {
-    const { results } = this.state;
+    const { results } = this.props.tunesQueryData.data;
 
     if (property === 'length') {
       results.sort((a,b) => a.trackTimeMillis- b.trackTimeMillis)
@@ -41,7 +33,7 @@ export default class List extends Component {
   }
 
   render() {
-    const { results } = this.state;
+    const { results } = this.props.tunesQueryData.data;
 
     return (
       <div className=" container result-list ">

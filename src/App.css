@@ -133,3 +133,8 @@ body {
  .share-btn {
   cursor: pointer;
  }
+
+ .change-controlers {
+   display: flex;
+   margin-bottom: 20px;
+ }

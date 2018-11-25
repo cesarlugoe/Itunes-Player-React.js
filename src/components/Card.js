@@ -5,7 +5,11 @@ class Card extends Component {
 
   handleClick = () => {
     const { trackId } = this.props.tunes;
-    this.props.history.push(`/tunes/${trackId}`);
+    const { songList, index } = this.props;
+    this.props.history.push({
+      pathname: `/tunes/${trackId}`,
+      state: { songList, index },
+    });
   }
 
   render() {

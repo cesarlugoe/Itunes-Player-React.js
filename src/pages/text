@@ -8,21 +8,14 @@ export default class MusicPlayer extends Component {
   state = {
     song: {},
     isLoading: true,
-    currentSongIndex: Number,
   }
 
   componentDidMount = () => {
     this.setState({
       isLoading: true,
-      currentSongIndex: this.props.location.state.index,
-    }, () => this.findTune());
-
-  }
-
-  findTune = () => {
-    const { currentSongIndex } = this.state;
-    const songId = this.props.location.state.songList[currentSongIndex].trackId;
-
+    })
+    
+    const songId = this.props.match.params.id;
     itunesServer.findTuneById(songId)
     .then( tunesResponse => {
       const song = tunesResponse.data.results[0];
@@ -33,18 +26,8 @@ export default class MusicPlayer extends Component {
     })
   }
 
-  handleChangeSong = (value) => {
-    let changer;
-    value === 'next'? changer = 1 : changer = -1 ;
-    if (this.state.currentSongIndex > 0 || changer === 1) {
-      const currentSongIndex = this.state.currentSongIndex + changer;
-      this.setState({
-        currentSongIndex,
-      }, () => this.findTune())
-    } 
-  }
-
   render() {
+
     const { song, isLoading } = this.state;
     return (
       <div>
@@ -57,10 +40,6 @@ export default class MusicPlayer extends Component {
                 controls
                 src={song.previewUrl}>
               </audio>
-              <div className=" change-controlers ">
-                <button onClick={(e) => this.handleChangeSong('previous', e)}>previous</button>
-                <button onClick={(e) => this.handleChangeSong('next', e)}>next</button>
-              </div>
               <SocialSharing content={song}/>
             </div>
         }   
