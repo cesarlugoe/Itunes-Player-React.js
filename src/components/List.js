@@ -5,6 +5,7 @@ export default class List extends Component {
 
   state = {
     results: [],
+    activePage: 1,
   }
 
   displaySongResults = (results) => {
@@ -37,6 +38,13 @@ export default class List extends Component {
     this.setState({
       results,
     })
+  }
+
+  handlePageChange = (pageNumber) => {
+
+    this.setState({
+      activePage: pageNumber,
+    });
   }
 
   render() {

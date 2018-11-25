@@ -11,7 +11,7 @@ class ItunesServer {
   
   findTunes(query) {
     const parsedQuery = query.replace(/ /g, '+');
-    return this.itunes.get(`https://itunes.apple.com/search?term=${parsedQuery}&entity=song&limit=25`)
+    return this.itunes.get(`https://itunes.apple.com/search?term=${parsedQuery}&entity=song&limit=50`)
     .then(( tunesResponse ) =>  tunesResponse );
   }
 

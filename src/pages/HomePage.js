@@ -13,9 +13,18 @@ export default class HomePage extends Component {
   }
 
   componentDidMount = () => {
-    this.setState({
-      isLoading: false,
-    })
+
+    /* Aware of it not being good practice, bringing back the search result from the player,
+       I believe the proper solution is using Redux, which went over my head this time, but
+       I'm sure that I will be able to get a handle of it*/
+
+    const songListFromPlayer = this.props.location.state.queryResults;
+    if (songListFromPlayer){
+      this.setState({
+        tunesQueryData: songListFromPlayer,
+        searchSuccess: true,
+      })
+    }
   }
 
   handleTunesSearch = (query) => {
