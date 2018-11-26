@@ -4,18 +4,16 @@ import Moment from 'react-moment';
 import millisec from 'millisec';
 
 class Card extends Component {
-
   handleClick = () => {
     const { songList, index } = this.props;
     const { trackId } = songList[index];
 
     this.props.history.push({
       pathname: `/tunes/${trackId}`,
-      state: { songList, index },
+      state: { songList, index }
     });
-  }
-  
-          
+  };
+        
   render() {
     const { index, songList } = this.props;
     const tunes = songList[index];
