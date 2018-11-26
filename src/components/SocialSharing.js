@@ -20,44 +20,44 @@ export default class SocialSharing extends Component {
     return (
       <div className=" share-container container ">
         <FacebookShareButton
-                url={shareUrl}
-                quote={message}
-                className=" share-btn ">
-                <FacebookIcon
-                  size={32}
-                  round />
-              </FacebookShareButton>
+          url={shareUrl}
+          quote={message}
+          className=" share-btn ">
+          <FacebookIcon
+            size={32}
+            round />
+        </FacebookShareButton>
 
-              <TwitterShareButton
-                url={shareUrl}
-                title={message}
-                className=" share-container container ">
-                <TwitterIcon
-                  size={32}
-                  round />
-              </TwitterShareButton>
+        <TwitterShareButton
+          url={shareUrl}
+          title={message}
+          className=" share-container container ">
+          <TwitterIcon
+            size={32}
+            round />
+        </TwitterShareButton>
 
-              <LinkedinShareButton
-                url={shareUrl}
-                title={message}
-                windowWidth={750}
-                windowHeight={600}
-                className=" share-container container ">
-                <LinkedinIcon
-                  size={32}
-                  round />
-              </LinkedinShareButton>
+        <LinkedinShareButton
+          url={shareUrl}
+          title={message}
+          windowWidth={750}
+          windowHeight={600}
+          className=" share-container container ">
+          <LinkedinIcon
+            size={32}
+            round />
+        </LinkedinShareButton>
 
-              <RedditShareButton
-                url={shareUrl}
-                title={message}
-                windowWidth={660}
-                windowHeight={460}
-                className=" share-container container ">
-                <RedditIcon
-                  size={32}
-                  round />
-              </RedditShareButton>
+        <RedditShareButton
+          url={shareUrl}
+          title={message}
+          windowWidth={660}
+          windowHeight={460}
+          className=" share-container container ">
+          <RedditIcon
+            size={32}
+            round />
+        </RedditShareButton>
       </div>
     )
   }

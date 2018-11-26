@@ -6,8 +6,9 @@ import millisec from 'millisec';
 class Card extends Component {
 
   handleClick = () => {
-    const { trackId } = this.props.tunes;
     const { songList, index } = this.props;
+    const { trackId } = songList[index];
+
     this.props.history.push({
       pathname: `/tunes/${trackId}`,
       state: { songList, index },
@@ -16,14 +17,16 @@ class Card extends Component {
   
           
   render() {
-    const { tunes } = this.props;
+    const { index, songList } = this.props;
+    const tunes = songList[index];
+
     return (
       <div onClick={this.handleClick} className=" container  card ">
           <p><b>{tunes.trackName}</b></p>
           <p><b>{tunes.artistName}</b></p>
-          <p>
-            <Moment format="YYYY/MM/DD">
-              {tunes.releaseDate} 
+          <p> 
+            <Moment format="YYYY/MM/DD"> 
+             {tunes.releaseDate} 
             </Moment>
           </p>
           <p><b>{tunes.collectionName}</b></p>

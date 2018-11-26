@@ -13,17 +13,21 @@ export default class MusicPlayer extends Component {
   }
 
   componentDidMount = () => {
+    const currentSongIndex = this.props.location.state.index;
+    const queryResults = this.props.location.state.songList
+
     this.setState({
       isLoading: true,
-      currentSongIndex: this.props.location.state.index,
-      queryResults: this.props.location.state.songList,
+      currentSongIndex,
+      queryResults,
     }, () => this.findTune());
 
   }
 
   findTune = () => {
     const { currentSongIndex } = this.state;
-    const songId = this.props.location.state.songList[currentSongIndex].trackId;
+    const { songList } = this.props.location.state;
+    const songId = songList[currentSongIndex].trackId;
 
     itunesServer.findTuneById(songId)
     .then( tunesResponse => {
@@ -36,10 +40,13 @@ export default class MusicPlayer extends Component {
   }
 
   handleChangeSong = (value) => {
+
+    let { currentSongIndex } = this.state;
     let direction;
-    value === 'next'? direction = 1 : direction = -1 ;
-    if (this.state.currentSongIndex > 0 || direction === 1) {
-      const currentSongIndex = this.state.currentSongIndex + direction;
+
+    if (currentSongIndex > 0 || value === 'next') {
+      value === 'next'? direction = 1 : direction = -1 ;
+      currentSongIndex += direction;
       this.setState({
         currentSongIndex,
       }, () => this.findTune())
@@ -56,18 +63,23 @@ export default class MusicPlayer extends Component {
 
   render() {
     const { song, isLoading, queryResults } = this.state;
+    
     return (
-      <div>
+      <div className=" container player-main ">
         {isLoading? <h1>...Loading</h1> 
           : <div className=" music-player container ">
+
               <button onClick={() => this.handleBackButton(queryResults)}>back</button>
+
               <p>{song.artistName}</p>
               <img src={song.artworkUrl100} alt={song.collectionName}></img>
               <p>{song.trackName}</p>
+
               <audio 
                 controls
                 src={song.previewUrl}>
               </audio>
+
               <div className=" change-controlers ">
                 <button onClick={(e) => this.handleChangeSong('previous', e)}>previous</button>
                 <button onClick={(e) => this.handleChangeSong('next', e)}>next</button>

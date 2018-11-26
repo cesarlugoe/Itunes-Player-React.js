@@ -5,13 +5,12 @@ export default class List extends Component {
 
   state = {
     results: [],
-    activePage: 1,
   }
 
   displaySongResults = (results) => {
 
     return results.map((song, index) => {
-       return <Card key={song.trackId} tunes={song} songList={results} index={index}/>
+       return <Card key={song.trackId} songList={results} index={index}/>
     })
   }
 
@@ -38,13 +37,6 @@ export default class List extends Component {
     this.setState({
       results,
     })
-  }
-
-  handlePageChange = (pageNumber) => {
-
-    this.setState({
-      activePage: pageNumber,
-    });
   }
 
   render() {
