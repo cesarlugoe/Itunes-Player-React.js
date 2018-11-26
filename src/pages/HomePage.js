@@ -4,11 +4,12 @@ import itunesServer from "../lib/ItunesService";
 import List from "../components/List";
 
 export default class HomePage extends Component {
-  state = {
-    tunesQueryData: [],
-    isSearching: false,
-    searchSuccess: Boolean
-  };
+    state = {
+      tunesQueryData: [],
+      isSearching: false,
+      searchSuccess: null
+    };
+  
 
   componentDidMount = () => {
     this.checkSearchCache();
@@ -52,7 +53,8 @@ export default class HomePage extends Component {
        but I'm sure that I will be able to get a handle of it */
 
   checkSearchCache = () => {
-    const checkCache = this.props.location.state;
+    // TDD software woun't read ...location.state if location is undefined.
+    const checkCache = this.props.location ? this.props.location.state : null;
     const songListFromPlayer = checkCache ? checkCache.queryResults : null;
 
     if (songListFromPlayer) {

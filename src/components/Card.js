@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import { withRouter } from 'react-router-dom';
-import Moment from 'react-moment';
-import millisec from 'millisec';
+import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
+import Moment from "react-moment";
+import millisec from "millisec";
 
 class Card extends Component {
   handleClick = () => {
@@ -28,12 +28,12 @@ class Card extends Component {
             </Moment>
           </p>
           <p><b>{tunes.collectionName}</b></p>
-          <p>{millisec(tunes.trackTimeMillis).format('mm : ss')}</p>
+          <p>{millisec(tunes.trackTimeMillis).format("mm : ss")}</p>
           <p>{tunes.primaryGenreName}</p>
           <p>${tunes.trackPrice}</p>
           <img className=" album-thumbnail " src={tunes.artworkUrl100} alt={tunes.artistName}></img>
       </div>
-    )
+    );
   }
 }
 export default withRouter(Card);

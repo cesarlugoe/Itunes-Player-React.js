@@ -39,7 +39,7 @@ Home Page
 
 Music Player
 - Music Player
-- Buttons
+- Social Sharing
 
 ## Services (API)
 

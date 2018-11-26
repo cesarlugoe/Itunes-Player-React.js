@@ -6,7 +6,7 @@ export default class MusicPlayer extends Component {
   state = {
     song: {},
     isLoading: true,
-    currentSongIndex: Number,
+    currentSongIndex: null,
     queryResults: {}
   };
 
