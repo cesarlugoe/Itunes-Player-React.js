@@ -28,7 +28,6 @@ The displayed list of results should lead to a detail description page where mor
 
 - Home Page
 - Music Player (with selected track)
-- 404 Page
 
 ## Components 
 
@@ -48,4 +47,6 @@ Itunes API Service
 
 ## TDD
 
-Jasmine
+enzyme
+chai
+mocha
