@@ -83,10 +83,19 @@ body {
    display: flex;
    width: 100%;
    justify-content: center;
+   padding-left: 70px;
  }
 
  .result-heading p {
    width: 10%;
+ }
+
+ .active {
+   color: orange;
+ }
+
+ .inactive {
+   color: black;
  }
 
 

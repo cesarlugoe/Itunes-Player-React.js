@@ -53,7 +53,7 @@ export default class HomePage extends Component {
        but I'm sure that I will be able to get a handle of it */
 
   checkSearchCache = () => {
-    // TDD software woun't read ...location.state if location is undefined.
+    // TDD software woudn't read ...location.state if location is undefined.
     const checkCache = this.props.location ? this.props.location.state : null;
     const songListFromPlayer = checkCache ? checkCache.queryResults : null;
 
