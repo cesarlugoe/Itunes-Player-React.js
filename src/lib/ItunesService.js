@@ -2,10 +2,7 @@ import axios from "axios";
 
 class ItunesServer {
   constructor() {
-    this.itunes = axios.create({
-      baseURL: process.env.REACT_APP_BASEURL,
-      withCredentials: true
-    });
+    this.itunes = axios.create();
   }
 
   findTunes(query) {

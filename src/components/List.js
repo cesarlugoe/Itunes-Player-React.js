@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Card from "../components/Card";
-import helpers from "../lib/helpers/helpers";
+import helpers from "../helpers/helpers";
 
 export default class List extends Component {
   state = {

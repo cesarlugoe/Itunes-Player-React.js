@@ -84,10 +84,10 @@ export default class MusicPlayer extends Component {
             <audio controls src={song.previewUrl} />
 
             <div className=" change-controlers ">
-              <button onClick={e => this.handleChangeSong("previous", e)}>
+              <button onClick={() => this.handleChangeSong("previous")}>
                 previous
               </button>
-              <button onClick={e => this.handleChangeSong("next", e)}>
+              <button onClick={() => this.handleChangeSong("next")}>
                 next
               </button>
             </div>
