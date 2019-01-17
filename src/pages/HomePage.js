@@ -48,9 +48,6 @@ export default class HomePage extends Component {
     }
   };
 
-  /* Aware of it not being good practice bringing back the search result from the player,
-       I believe the proper solution is using Redux, which I failed to implement (haven't used it before),
-       but I'm sure that I will be able to get a handle of it */
 
   checkSearchCache = () => {
     // TDD software woudn't read ...location.state if location is undefined.
